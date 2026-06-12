@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: routeiq
+      POSTGRES_PASSWORD: routeiq
+      POSTGRES_DB: routeiq
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U routeiq"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://routeiq:routeiq@db:5432/routeiq
+      FRONTEND_ORIGIN: http://localhost:8080
+      # Pass your key through to enable AI features (optional).
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
