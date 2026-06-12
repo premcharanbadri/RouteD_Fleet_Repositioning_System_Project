@@ -10,7 +10,10 @@ RouteIQ is a full-stack, production-grade logistics platform engineered to solve
 ---
 
 ## 🎥 Project Demo
-<video src="https://github.com/premcharanbadri/RouteD_Fleet_Repositioning_System_Project/blob/main/demo.mp4?raw=true" controls="controls" width="100%"></video>
+
+
+https://github.com/user-attachments/assets/27858262-2075-470d-a2be-7beadf24367c
+
 
 ---
 
